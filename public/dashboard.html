@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Tracker - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Utility classes for layout -->
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">📚 JEE Tracker</div>
+        <div class="nav-links">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="#" id="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-container dashboard-grid">
+        <!-- Col 1: Tasks -->
+        <div class="card">
+            <h2>Today's Plan</h2>
+            <div id="task-list" class="task-list">
+                <!-- Tasks injected here -->
+            </div>
+            <button class="btn btn-primary mt-4" onclick="openAddTaskModal()">+ Add Task</button>
+        </div>
+
+        <!-- Col 2: Active Task -->
+        <div class="card flex flex-col items-center justify-center text-center">
+            <h2 class="mb-4">Current Focus</h2>
+            <div id="active-task-container" class="animated-ring-container hidden">
+                <svg class="progress-ring" width="200" height="200">
+                    <circle class="ring-bg" cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"/>
+                    <circle class="ring-progress" cx="100" cy="100" r="80" fill="none" stroke="#a855f7" stroke-width="8" stroke-linecap="round" stroke-dasharray="502.4" stroke-dashoffset="0"/>
+                </svg>
+                <div class="ring-content">
+                    <div class="ring-time" id="timer-display">00:00</div>
+                    <div class="ring-subject" id="active-subject">Subject</div>
+                    <div class="ring-task" id="active-task-name">Task Name</div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="btn bg-red-500 hover:bg-red-600 text-white" onclick="stopCurrentTask()">Stop</button>
+                    <button class="btn bg-green-500 hover:bg-green-600 text-white" onclick="completeCurrentTask()">Complete</button>
+                </div>
+            </div>
+            <div id="no-active-task" class="text-gray-500">
+                No active task. Select one from the left to start.
+            </div>
+        </div>
+
+        <!-- Col 3: Live Feed -->
+        <div class="card">
+            <h2>Live Feed</h2>
+            <div id="live-feed" class="flex flex-col gap-4 mt-4">
+                <!-- Live users injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="add-task-modal" class="modal">
+        <div class="modal-content card">
+            <h2>Add New Task</h2>
+            <input type="text" id="new-task-name" placeholder="Task Name" class="w-full p-2 mb-2 bg-gray-800 text-white border border-gray-700 rounded">
+            <select id="new-task-subject" class="w-full p-2 mb-2 bg-gray-800 text-white border border-gray-700 rounded">
+                <option value="Maths">Maths</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+            </select>
+            <input type="number" id="new-task-time" placeholder="Minutes" class="w-full p-2 mb-4 bg-gray-800 text-white border border-gray-700 rounded">
+            <div class="flex justify-end gap-2">
+                <button class="btn bg-gray-600" onclick="closeAddTaskModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitNewTask()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

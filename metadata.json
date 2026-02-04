@@ -1,0 +1,5 @@
+{
+  "name": "JEE Study Tracker",
+  "description": "Full-stack Node.js study tracking application with real-time updates and timeline visualization.",
+  "requestFramePermissions": []
+}
